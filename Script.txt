@@ -1,0 +1,38 @@
+CREATE DATABASE IF NOT EXISTS gestion_tareas;
+USE gestion_tareas;
+
+-- Crear la tabla de tareas
+CREATE TABLE Tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    fecha_vencimiento DATE NOT NULL,
+    prioridad VARCHAR(20) NOT NULL,
+    estado VARCHAR(20) 
+);
+
+-- Crear la tabla de usuarios
+CREATE TABLE Usuarios (
+   	nombre VARCHAR(20),
+		apellidos VARCHAR(20),
+		nombre_usuario VARCHAR(20) PRIMARY KEY,
+		contrasenia VARCHAR(20)
+);
+
+-- Crear la tabla de asignaciones de tareas a usuarios
+CREATE TABLE Asignaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tarea_id INT,
+    nombre_usuario VARCHAR(20),
+    FOREIGN KEY (tarea_id) REFERENCES Tareas(id),
+    FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario)
+);
+
+CREATE TABLE Asignaciones_Multiples (
+    asignacion_id INT AUTO_INCREMENT PRIMARY KEY,
+    tarea_id INT,
+    nombre_usuario VARCHAR(20),
+    FOREIGN KEY (tarea_id) REFERENCES Tareas(id),
+    FOREIGN KEY (nombre_usuario) REFERENCES Usuarios(nombre_usuario)
+);
+
+
